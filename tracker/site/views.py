@@ -130,11 +130,15 @@ class UpdateTicketView(ProjectContextMixin, UpdateView):
     template_name = "site/ticket_form.html"
 
     def get_success_url(self):
+
         return reverse("project-detail", kwargs={"project_id": self.kwargs['project_id']})
 
     def get_form_kwargs(self):
         kwargs = super(UpdateTicketView, self).get_form_kwargs()
-        kwargs['project'] = self.get_project()
+        print 'ob', self.object.project
+        # If the ticket is already assigned to a project, use this as the form kwarg;
+        # otherwise, user can move the ticket by changing the project id in the URL
+        kwargs['project'] = self.object.project or self.get_project()
         kwargs['user'] = self.request.user
         kwargs['title'] = "Edit {0}".format(self.object.title)
         return kwargs
