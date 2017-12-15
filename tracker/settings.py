@@ -141,4 +141,9 @@ CRISPY_TEMPLATE_PACK = 'foundation-5'
 
 AUTH_USER_MODEL = 'djangae.GaeUser'
 
+ALLOWED_HOSTS = [
+        'localhost',
+        '127.0.0.1',
+    ]
+
 from djangae.contrib.gauth.settings import *
