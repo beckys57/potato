@@ -51,9 +51,11 @@ class TicketForm(BaseTrackerForm):
     def __init__(self, project=None, *args, **kwargs):
         self.project = project
         super(TicketForm, self).__init__(*args, **kwargs)
-
-
         self.fields['assignees'].queryset = get_user_model().objects.all()
+        # Override the choices with just the email for each user
+        self.fields['assignees'].choices = [(a.id, a.email) for a in self.fields['assignees'].queryset]
+
+
     def pre_save(self, instance):
         instance.created_by = self.user
         instance.project = self.project
