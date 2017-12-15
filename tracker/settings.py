@@ -139,6 +139,9 @@ if DEBUG:
 
 CRISPY_TEMPLATE_PACK = 'foundation-5'
 
+# Allow other template packs in forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'foundation-5')
+
 AUTH_USER_MODEL = 'djangae.GaeUser'
 
 ALLOWED_HOSTS = [
