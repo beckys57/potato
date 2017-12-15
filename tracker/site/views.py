@@ -135,7 +135,7 @@ class UpdateTicketView(ProjectContextMixin, UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(UpdateTicketView, self).get_form_kwargs()
-        print 'ob', self.object.project
+
         # If the ticket is already assigned to a project, use this as the form kwarg;
         # otherwise, user can move the ticket by changing the project id in the URL
         kwargs['project'] = self.object.project or self.get_project()
